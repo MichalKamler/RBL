@@ -3,7 +3,7 @@ import random
 
 def main():
 
-    N = 20        # Number of robots
+    N = 50        # Number of robots
     parameters = {
 
     #The parameters have to be set as is indicated in the paper https://arxiv.org/abs/2310.19511.
@@ -11,9 +11,9 @@ def main():
         "R_circle": 0,                  # If greater than 0, robots in a circle (radius of the circle)
                                         # If equal to 0, robots in a random room
         "radius": 1,                    # Half of the sensing radius: dimension of the cells r_{s,i}=r_{s}
-        "xlim": (-2, 2),                 # Random room dimensions on the X-axis
-        "ylim": (-2, 2),                 # Random room dimensions on the Y-axis
-        "zlim": (1, 3),                 # Random room dimensions on the Z-axis
+        "xlim": (-3, 3),                 # Random room dimensions on the X-axis
+        "ylim": (-3, 3),                 # Random room dimensions on the Y-axis
+        "zlim": (1, 4),                 # Random room dimensions on the Z-axis
         "N": N,                         # Number of robots
         "num_steps": 5000,              # Number of simulation steps
         "dx": 0.075,                     # Space discretization [It introduce an approximation. The lower the better, but it is computationally expensive]
@@ -34,7 +34,7 @@ def main():
         "waiting_time":  3000,           # waiting time after all the robots enter their goal regions.
         "h":1,
         "record": True,
-        "replay_csv": True,
+        "replay_csv": False,
     }
 
     replay = parameters["replay_csv"]

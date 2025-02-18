@@ -180,6 +180,10 @@ class LloydBasedAlgorithm:
         centroid, _ = self.get_centroid()
         u = -self.k * (np.array(self.robot_pos) - np.array(centroid))
         return u if np.linalg.norm(u) <= self.v_max else u / np.linalg.norm(u) * self.v_max
+
+    def printVel(self):
+        velocity = self.compute_control()
+        print("velocity: ", velocity)
       
     def move(self):
         x, y, z = self.robot_pos  

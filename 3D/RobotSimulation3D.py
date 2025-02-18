@@ -126,7 +126,7 @@ class RobotSimulation3D:
 
     def replay(self):
         p.connect(p.GUI)
-        
+        time.sleep(5)
         for i, data in enumerate(self.recorded_data):
             sphere_type, j, position, size = data
             if sphere_type == "current":
@@ -251,8 +251,14 @@ class RobotSimulation3D:
                 self.tmp = np.sqrt(u[0] ** 2 + u[1] ** 2 + u[2] ** 2)
             d2 = 3 * max(self.P["size"])
             d4 = d2
+
+            
             applyrules(j, self.P, self.beta, self.current_position, self.c1, self.c2, self.th, self.goal, self.Robots,
                        self.c1_no_rotation, d2, d4)
+            if j == 0:
+                print("cur pos: ", self. current_position[j])
+                print("destination :", self.Robots.destinations[j])
+                print("c1 :", self.c1[j])
 
             if math.sqrt((self.current_position[j][0] - self.goal[j][0]) ** 2 +
                          (self.current_position[j][1] - self.goal[j][1]) ** 2 + 
@@ -282,6 +288,8 @@ class RobotSimulation3D:
             #         file.write(data)
 
             self.current_position_x[j], self.current_position_y[j], self.current_position_z[j] = self.Lloyd[j].move()
+            if j == 0:
+                self.Lloyd[j].printVel()
             self.current_position[j] = self.current_position_x[j], self.current_position_y[j], self.current_position_z[j]
 
         if self.P["flag_plot"] == 1 and self.sim_running:
